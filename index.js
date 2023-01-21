@@ -3,7 +3,7 @@ const routerApi = require('./routes')
 const { logError, errorHandler, boomErrorHandler } = require('./middleware/error.handle')
 const cors = require('cors');
 
-const port = 3000
+const PORT = process.env.PORT || 3000
 const app = express()
 
 
@@ -22,7 +22,7 @@ app.use(boomErrorHandler)
 app.use(errorHandler)
 
 
-app.listen(port, ()=>{
-  console.log(`My port: http://localhost:${port}`);
+app.listen(PORT, ()=>{
+  console.log(`My port: http://localhost:${PORT}`);
 })
 
