@@ -6,9 +6,35 @@ const validatorHandler = require('./../middleware/validator.handler')
 const router = express.Router();
 const productService = new ProductsService();
 
+/**
+ * @openapi
+ * /api/v1/products:
+ *   get:
+ *     tags:
+ *       - products
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ */
 router.get('/', async (req, res)=>{
   const products = await productService.find();
-  res.json(products)
+  res.json(
+  {
+    status:res.status,
+    data:products
+  })
 });
 
 router.get('/:productId',
